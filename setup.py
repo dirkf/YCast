@@ -22,6 +22,7 @@ setup(
         'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
         'Natural Language :: English',
         'Operating System :: POSIX :: Linux',
+        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Topic :: Multimedia :: Sound/Audio',
         'Topic :: Software Development :: Libraries :: Python Modules'
@@ -40,6 +41,6 @@ setup(
         'onkyo',
         'denon'
     ],
-    install_requires=['requests', 'flask', 'PyYAML', 'Pillow'],
+    install_requires=['flask<2', 'PyYAML<6', 'Pillow<7'],
     packages=find_packages(exclude=['contrib', 'docs', 'tests'])
 )
