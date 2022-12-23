@@ -74,7 +74,7 @@ Any reported device helps the community to see which AVRs work properly and whic
  * Yamaha WX-030
 
 ## Dependencies:
-Python version: `3`
+Python version: `2.7`, `3`
 
 Python packages:
  * `requests`
