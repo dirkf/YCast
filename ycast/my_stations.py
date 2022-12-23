@@ -1,3 +1,11 @@
+# coding: utf-8
+
+from __future__ import unicode_literals
+try:
+    str = unicode
+except NameError:
+    pass
+
 import logging
 import hashlib
 
