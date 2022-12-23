@@ -1,5 +1,9 @@
-import requests
+# coding: utf-8
+
+from __future__ import unicode_literals
+
 import logging
+import requests
 
 from ycast import __version__
 import ycast.vtuner as vtuner
@@ -17,7 +21,7 @@ ID_PREFIX = "RB"
 def get_json_attr(json, attr):
     try:
         return json[attr]
-    except:
+    except Exception:
         return None
 
 
@@ -61,7 +65,7 @@ def request(url):
 
 
 def get_station_by_id(uid):
-    station_json = request('stations/byuuid/' + str(uid))
+    station_json = request('stations/byuuid/%s' % (uid, ))
     if station_json and len(station_json):
         return Station(station_json[0])
     else:
@@ -70,7 +74,7 @@ def get_station_by_id(uid):
 
 def search(name, limit=DEFAULT_STATION_LIMIT):
     stations = []
-    stations_json = request('stations/search?order=name&reverse=false&limit=' + str(limit) + '&name=' + str(name))
+    stations_json = request('stations/search?order=name&reverse=false&limit=%s%s%s' % (limit, '&name=', name))
     for station_json in stations_json:
         if SHOW_BROKEN_STATIONS or get_json_attr(station_json, 'lastcheckok') == 1:
             stations.append(Station(station_json))
@@ -123,7 +127,7 @@ def get_genre_directories():
 
 def get_stations_by_country(country):
     stations = []
-    stations_json = request('stations/search?order=name&reverse=false&countryExact=true&country=' + str(country))
+    stations_json = request('stations/search?order=name&reverse=false&countryExact=true&country=%s' % (country, ))
     for station_json in stations_json:
         if SHOW_BROKEN_STATIONS or get_json_attr(station_json, 'lastcheckok') == 1:
             stations.append(Station(station_json))
@@ -132,7 +136,7 @@ def get_stations_by_country(country):
 
 def get_stations_by_language(language):
     stations = []
-    stations_json = request('stations/search?order=name&reverse=false&languageExact=true&language=' + str(language))
+    stations_json = request('stations/search?order=name&reverse=false&languageExact=true&language=%s' % (language, ))
     for station_json in stations_json:
         if SHOW_BROKEN_STATIONS or get_json_attr(station_json, 'lastcheckok') == 1:
             stations.append(Station(station_json))
@@ -141,7 +145,7 @@ def get_stations_by_language(language):
 
 def get_stations_by_genre(genre):
     stations = []
-    stations_json = request('stations/search?order=name&reverse=false&tagExact=true&tag=' + str(genre))
+    stations_json = request('stations/search?order=name&reverse=false&tagExact=true&tag=%s' % (genre, ))
     for station_json in stations_json:
         if SHOW_BROKEN_STATIONS or get_json_attr(station_json, 'lastcheckok') == 1:
             stations.append(Station(station_json))
@@ -150,7 +154,7 @@ def get_stations_by_genre(genre):
 
 def get_stations_by_votes(limit=DEFAULT_STATION_LIMIT):
     stations = []
-    stations_json = request('stations?order=votes&reverse=true&limit=' + str(limit))
+    stations_json = request('stations?order=votes&reverse=true&limit=%s' % (limit, ))
     for station_json in stations_json:
         if SHOW_BROKEN_STATIONS or get_json_attr(station_json, 'lastcheckok') == 1:
             stations.append(Station(station_json))
