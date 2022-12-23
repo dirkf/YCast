@@ -1,3 +1,8 @@
+# coding: utf-8
+
+from __future__ import unicode_literals
+
+
 import logging
 import os
 
@@ -23,7 +28,7 @@ def generate_stationid_with_prefix(uid, prefix):
     if not uid:
         logging.error("Missing station id for full station id generation")
         return None
-    return str(prefix) + '_' + str(uid)
+    return '%s_%s' % (prefix, uid)
 
 
 def get_stationid_prefix(uid):
