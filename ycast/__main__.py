@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 import argparse
 import logging
@@ -27,8 +27,8 @@ def launch_server():
 
 
 if __name__ == "__main__":
-    if sys.version_info[0] < 3:
-        logging.error("Unsupported Python version (Python %s). Minimum required version is Python 3.",
+    if sys.version_info[:2] < (3, 5) and sys.version_info[:2] != (2, 7):
+        logging.error("Unsupported Python version (Python %s). Minimum required version is Python 3.5+ or 2.7",
                       sys.version_info[0])
         sys.exit(1)
     launch_server()
